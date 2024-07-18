@@ -1,3 +1,4 @@
+import GameList from "./components/game-list/GameList"
 import Header from "./components/header/Header"
 import Home from "./components/home/Home"
 import {Routes, Route} from "react-router-dom"
@@ -9,7 +10,8 @@ function App() {
       <>
       <Header />
       <Routes>
-        <Route path="/" element={<Home/>}/>
+        <Route path="/" element={<Home/>} />
+        <Route path="/games" element={<GameList/>} />
       </Routes>
       </>
     </div>
