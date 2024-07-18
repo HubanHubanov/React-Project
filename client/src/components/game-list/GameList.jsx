@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 const baseUrl = "http://localhost:3030/jsonstore";
 
 import * as gameService from "../../services/gameService";
+import GameListItem from "./geme-list-item/GameListItem";
 
 
 export default function GameList() {
@@ -10,26 +11,22 @@ export default function GameList() {
     useEffect(() => {
         gameService.getAll()
             .then(result => setGames(result));
+
             
     }, []);
 
-    console.log(games);
 
     return (
         <section id="catalog-page">
             <h1>All Games</h1>
-            <div className="allGames">
-                <div className="allGames-info">
-                    <img src="./images/avatar-1.jpg" />
-                    <h6>Action</h6>
-                    <h2>Cover Fire</h2>
-                    <a href="#" className="details-button">Details</a>
-                </div>
+            
+            {games.map(game => (
+                <GameListItem key={game._id} {...game}/>
+            ))}
 
-            </div>
-           
-          
-            <h3 className="no-articles">No articles yet</h3>
+            {games.length === 0 && (
+                    <h3 className="no-articles">No articles yet</h3>
+                )}
         </section>
 
     );
